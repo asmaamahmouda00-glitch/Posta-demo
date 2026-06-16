@@ -791,36 +791,63 @@ if(mw0){ pins.forEach((p,i)=>{const d=document.createElement('div');d.className=
   d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.animationDelay=(i*0.22)+'s';
   mw0.appendChild(d); }); }
 
-/* hero network canvas (cyan/indigo) */
+/* hero paper planes */
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 const cv=document.getElementById('net');
 if(cv && !reduce){
-  const ctx=cv.getContext('2d'); let W,H,nodes=[],packets=[];
-  function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;}
+  const ctx=cv.getContext('2d');
+  const DPR=Math.min(devicePixelRatio||1,2);
+  let W,H,planes=[];
+  function size(){W=cv.width=cv.offsetWidth*DPR;H=cv.height=cv.offsetHeight*DPR;}
   size(); window.addEventListener('resize',size);
-  const N=38;
-  for(let i=0;i<N;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.16*devicePixelRatio,vy:(Math.random()-.5)*.16*devicePixelRatio});
-  const LINK=155*devicePixelRatio;
-  function spawnPacket(){
-    if(packets.length>9)return;
-    const a=nodes[(Math.random()*N)|0],b=nodes[(Math.random()*N)|0];
-    if(a===b)return; packets.push({a,b,t:0,sp:.006+Math.random()*.01});
+  const N=13;
+  function mk(spread){
+    const ang=(-22+Math.random()*44)*Math.PI/180;
+    return {
+      x: spread? Math.random()*W : -50*DPR,
+      y: spread? Math.random()*H : (Math.random()*0.9+0.05)*H,
+      a: ang,
+      sp:(0.3+Math.random()*0.55)*DPR,
+      s:(8+Math.random()*9)*DPR,
+      op:0.22+Math.random()*0.45,
+      sway:Math.random()*6.28, swsp:0.004+Math.random()*0.009
+    };
   }
-  setInterval(spawnPacket,380);
+  for(let i=0;i<N;i++)planes.push(mk(true));
+  function plane(p,a){
+    const s=p.s;
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(a);
+    /* dashed flight trail */
+    ctx.strokeStyle='rgba(168,207,56,'+(p.op*0.45)+')';
+    ctx.lineWidth=1*DPR; ctx.setLineDash([2*DPR,6*DPR]);
+    ctx.beginPath(); ctx.moveTo(-s*0.7,0); ctx.lineTo(-s*3.4,0); ctx.stroke();
+    ctx.setLineDash([]);
+    /* upper wing (light) */
+    ctx.beginPath();
+    ctx.moveTo(s,0); ctx.lineTo(-s*0.72,-s*0.62); ctx.lineTo(-s*0.34,0); ctx.closePath();
+    ctx.fillStyle='rgba(233,243,217,'+p.op+')'; ctx.fill();
+    /* lower wing (green, for fold depth) */
+    ctx.beginPath();
+    ctx.moveTo(s,0); ctx.lineTo(-s*0.72,s*0.62); ctx.lineTo(-s*0.34,0); ctx.closePath();
+    ctx.fillStyle='rgba(168,207,56,'+(p.op*0.85)+')'; ctx.fill();
+    /* center crease */
+    ctx.beginPath(); ctx.moveTo(s,0); ctx.lineTo(-s*0.34,0);
+    ctx.strokeStyle='rgba(255,255,255,'+(p.op*0.7)+')'; ctx.lineWidth=1*DPR; ctx.stroke();
+    ctx.restore();
+  }
   function draw(){
     ctx.clearRect(0,0,W,H);
-    for(const n of nodes){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;}
-    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
-      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.hypot(dx,dy);
-      if(d<LINK){const o=(1-d/LINK)*0.15;ctx.strokeStyle='rgba(150,185,120,'+o+')';ctx.lineWidth=1*devicePixelRatio;
-        ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke();}
+    const m=70*DPR;
+    for(let i=0;i<planes.length;i++){
+      const p=planes[i];
+      p.sway+=p.swsp;
+      const a=p.a+Math.sin(p.sway)*0.14;
+      p.x+=Math.cos(a)*p.sp; p.y+=Math.sin(a)*p.sp;
+      if(p.x>W+m||p.x<-m||p.y>H+m||p.y<-m) planes[i]=mk(false);
+      plane(p,a);
     }
-    for(const n of nodes){ctx.fillStyle='rgba(168,207,56,.55)';ctx.beginPath();ctx.arc(n.x,n.y,1.6*devicePixelRatio,0,7);ctx.fill();}
-    for(let k=packets.length-1;k>=0;k--){const p=packets[k];p.t+=p.sp;if(p.t>=1){packets.splice(k,1);continue;}
-      const x=p.a.x+(p.b.x-p.a.x)*p.t,y=p.a.y+(p.b.y-p.a.y)*p.t;
-      const g=ctx.createRadialGradient(x,y,0,x,y,6*devicePixelRatio);
-      g.addColorStop(0,'rgba(205,233,162,.95)');g.addColorStop(1,'rgba(168,207,56,0)');
-      ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,6*devicePixelRatio,0,7);ctx.fill();}
     requestAnimationFrame(draw);
   }
   draw();
