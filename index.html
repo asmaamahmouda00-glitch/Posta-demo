@@ -308,6 +308,14 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
 .bignum-row .bignum-l{margin:0;max-width:170px}
 .glassart.gif{padding:0;height:auto;min-height:240px;border:none;background:none}
 .wpgif{width:100%;height:100%;object-fit:contain;border-radius:12px;display:block}
+.zoomable{cursor:zoom-in;transition:transform .3s}
+.zoomable:hover{transform:scale(1.015)}
+.lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(6,10,4,.92);backdrop-filter:blur(8px);padding:32px;cursor:zoom-out}
+.lightbox.open{display:flex;animation:lbfade .25s ease}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:95vw;max-height:92vh;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:default}
+.lightbox .lb-close{position:absolute;top:22px;right:28px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:24px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.lightbox .lb-close:hover{background:rgba(255,255,255,.2)}
 .mig-logos{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:nowrap}
 .mlogo{flex:1 1 0;height:42px;display:grid;place-items:center;background:none;border:none;padding:0;transition:transform .3s}
 .mlogo:hover{transform:translateY(-3px)}
@@ -409,7 +417,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
     <p class="lede">A secure, high-performance communication and collaboration platform, built and managed by WorldPosta.</p>
     <div class="hero-cta">
       <a href="#features" class="btn btn-primary">Explore the platform <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
-      <a href="https://worldposta.com" class="btn btn-ghost">worldposta.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+      <a href="https://worldposta.com/" target="_blank" rel="noopener" class="btn btn-ghost">worldposta.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
     </div>
     <div class="hero-stats">
       <div class="s"><b><span class="count" data-to="35">0</span></b><span>global zones</span></div>
@@ -514,7 +522,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
         <h2>WPFlag: your integrated AI email assistant</h2>
         <p>Bring intelligence directly into the inbox. WPFlag is a built-in AI plug-in that helps your team triage, draft, and act on email faster, without ever leaving Posta.</p>
       </div>
-      <div><div class="glassart gif"><img class="wpgif" src="./assets/wp-flag.gif" alt="WPFlag AI email assistant"></div></div>
+      <div><div class="glassart gif"><img class="wpgif zoomable" src="./assets/wp-flag.gif" alt="WPFlag AI email assistant"></div></div>
     </div>
   </div>
 </section>
@@ -600,7 +608,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
         </div>
       </div>
       <div class="framewrap">
-        <div class="frame"><img src="./assets/tools.png" alt="WorldPosta Tools Manager admin console"></div>
+        <div class="frame"><img class="zoomable" src="./assets/tools.png" alt="WorldPosta Tools Manager admin console"></div>
       </div>
     </div>
   </div>
@@ -616,7 +624,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
     </div>
     <div class="band rev reveal" style="margin-top:56px">
       <div class="framewrap">
-        <div class="frame"><img src="./assets/cloudspace.png" alt="CloudSpace web access and online office"></div>
+        <div class="frame"><img class="zoomable" src="./assets/cloudspace.png" alt="CloudSpace web access and online office"></div>
       </div>
       <div>
         <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:24px">
@@ -704,11 +712,11 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
     <div class="eyebrow reveal"><span class="dot"></span>Let's Talk</div>
     <h2 class="reveal">Let's build your next-generation communication platform together.</h2>
     <div class="contacts reveal">
-      <a class="contact" href="https://worldposta.com"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>worldposta.com</a>
-      <a class="contact" href="mailto:support@worldposta.com"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>support@worldposta.com</a>
-      <a class="contact" href="tel:+16475566256"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>+1 (647) 556-6256</a>
+      <a class="contact" href="https://worldposta.com/" target="_blank" rel="noopener"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>worldposta.com</a>
+      <a class="contact" href="mailto:support@worldposta.com" target="_blank" rel="noopener"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>support@worldposta.com</a>
+      <a class="contact" href="tel:+16475566256" target="_blank" rel="noopener"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>+1 (647) 556-6256</a>
     </div>
-    <a href="https://worldposta.com" class="btn btn-primary reveal" style="margin:0 auto">Get started with Posta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="https://worldposta.com/" target="_blank" rel="noopener" class="btn btn-primary reveal" style="margin:0 auto">Get started with Posta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </section>
 
@@ -717,7 +725,20 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
   <p>&copy; WorldPosta · Posta · CloudEdge · CloudSpace</p>
 </footer>
 
+<div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">&times;</button><img id="lightbox-img" src="" alt=""></div>
+
 <script>
+/* image lightbox */
+(function(){
+  const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img');
+  document.querySelectorAll('.zoomable').forEach(img=>{
+    img.addEventListener('click',()=>{lbImg.src=img.src;lbImg.alt=img.alt;lb.classList.add('open');document.body.style.overflow='hidden';});
+  });
+  function close(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';}
+  lb.addEventListener('click',e=>{if(e.target!==lbImg)close();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+
 /* starfield ambient layer */
 (function(){
   const c=document.getElementById('stars'); if(!c)return;
