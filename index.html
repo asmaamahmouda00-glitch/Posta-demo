@@ -316,6 +316,28 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
 .lightbox img{max-width:95vw;max-height:92vh;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:default}
 .lightbox .lb-close{position:absolute;top:22px;right:28px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:24px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:background .2s}
 .lightbox .lb-close:hover{background:rgba(255,255,255,.2)}
+/* ===== FEATURE MODAL ===== */
+.card[data-modal]{cursor:pointer}
+.card[data-modal]::before{content:"";position:absolute;top:18px;right:18px;width:26px;height:26px;border-radius:8px;background:rgba(168,207,56,.12);opacity:0;transition:opacity .3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8CF38' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7'/%3E%3Cpath d='M7 7h10v10'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:15px}
+.card[data-modal]:hover::before{opacity:1}
+.fmodal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(6,10,4,.82);backdrop-filter:blur(10px);padding:28px;overflow-y:auto}
+.fmodal.open{display:flex;animation:lbfade .25s ease}
+.fmodal-box{position:relative;width:100%;max-width:1020px;background:linear-gradient(180deg,var(--ink2),var(--ink));border:1px solid var(--line2);border-radius:24px;box-shadow:0 40px 100px rgba(0,0,0,.6);padding:60px 64px;animation:fmpop .32s cubic-bezier(.2,.8,.25,1)}
+@keyframes fmpop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.fmodal .fm-close{position:absolute;top:18px;right:20px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--fog);font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:all .2s;z-index:2}
+.fmodal .fm-close:hover{background:rgba(168,207,56,.15);color:#fff;border-color:var(--line2)}
+.fm-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.fm-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.fm-title{font-family:var(--display);font-size:30px;line-height:1.15;font-weight:700;color:#fff;margin-bottom:28px;max-width:90%}
+.fm-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.fm-stage{position:relative;width:100%;padding-bottom:8px}
+.fm-stage .fm-window{display:block;width:86%;margin:0 auto;border-radius:10px;border:1px solid var(--line);box-shadow:0 24px 55px rgba(4,10,22,.55);background:#fff}
+.fm-stage .fm-laptop{position:absolute;left:50%;bottom:-54%;width:80%;transform:translateX(-50%);filter:drop-shadow(0 22px 30px rgba(0,0,0,.55))}
+.fm-points{list-style:none;display:flex;flex-direction:column;gap:18px}
+.fm-points li{display:flex;align-items:center;gap:15px;font-family:var(--body);font-size:16.5px;font-weight:600;color:var(--white);line-height:1.4}
+.fm-points li .fm-chk{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(168,207,56,.13);border:1px solid var(--line2)}
+.fm-points li .fm-chk svg{width:18px;height:18px;color:var(--cyan)}
+@media(max-width:760px){.fmodal-box{padding:32px 24px}.fm-grid{grid-template-columns:1fr;gap:30px}.fm-title{font-size:23px;max-width:100%}.fm-stage .fm-window{width:80%}.fm-stage .fm-laptop{width:78%}}
 .mig-logos{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:nowrap}
 .mlogo{flex:1 1 0;height:42px;display:grid;place-items:center;background:none;border:none;padding:0;transition:transform .3s}
 .mlogo:hover{transform:translateY(-3px)}
@@ -503,7 +525,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
     <h2 class="h-sec">Powerful features, tailored to your business</h2>
     <p class="lede">From native client compatibility to AI in the inbox: the tools your team works with every day.</p></div>
     <div class="grid g3 stagger" style="margin-top:56px">
-      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><h3>Native Exchange MAPI</h3><p>Connect Outlook natively over the MAPI protocol, with real-time synchronization and native support for the iPhone Mail app and macOS Mail.</p></div>
+      <div class="card" data-modal="mapi"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><h3>Native Exchange MAPI</h3><p>Connect Outlook natively over the MAPI protocol, with real-time synchronization and native support for the iPhone Mail app and macOS Mail.</p></div>
       <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18a4 4 0 0 0-8 0"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="2"/><line x1="8" x2="8" y1="2" y2="4"/><line x1="16" x2="16" y1="2" y2="4"/></svg></div><h3>Company Address Book</h3><p>Bulk-update users via CSV, push changes to every device instantly, and keep business cards consistent organization-wide.</p></div>
       <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></div><h3>Shared Calendar</h3><p>One calendar, your whole team in sync: meetings, availability, and resources from a single shared view.</p></div>
       <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></div><h3>Dynamic Distribution Lists</h3><p>Reach the right people automatically: membership updates itself based on the rules you set, with no manual maintenance.</p></div>
@@ -727,7 +749,47 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
 
 <div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">&times;</button><img id="lightbox-img" src="" alt=""></div>
 
+<div class="fmodal" id="fmodal"><div class="fmodal-box"><button class="fm-close" aria-label="Close">&times;</button><div id="fmodal-content"></div></div></div>
+
 <script>
+/* feature detail modals */
+(function(){
+  const chk='<span class="fm-chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>';
+  const data={
+    mapi:{
+      eyebrow:'Exchange Compatibility',
+      title:'Exchange MAPI Protocol for All Mail Clients',
+      window:'./assets/outlook.png',
+      laptop:'./assets/labtop.png',
+      points:[
+        'Full compatibility with Outlook using the MAPI protocol',
+        'Active synchronization across all your devices',
+        'Availability at a wide scale',
+        'Compatibility with the iPhone Mail app & Mac Mail client'
+      ]
+    }
+  };
+  const fm=document.getElementById('fmodal'),fc=document.getElementById('fmodal-content');
+  function open(key){
+    const d=data[key]; if(!d)return;
+    fc.innerHTML='<div class="fm-eyebrow"><span class="dot"></span>'+d.eyebrow+'</div>'+
+      '<h2 class="fm-title">'+d.title+'</h2>'+
+      '<div class="fm-grid"><div class="fm-stage">'+
+        '<img class="fm-window" src="'+d.window+'" alt="'+d.title+'">'+
+        '<img class="fm-laptop" src="'+d.laptop+'" alt="">'+
+      '</div><ul class="fm-points">'+
+        d.points.map(p=>'<li>'+chk+'<span>'+p+'</span></li>').join('')+
+      '</ul></div>';
+    fm.classList.add('open');document.body.style.overflow='hidden';
+  }
+  function close(){fm.classList.remove('open');document.body.style.overflow='';}
+  document.querySelectorAll('.card[data-modal]').forEach(c=>{
+    c.addEventListener('click',()=>open(c.getAttribute('data-modal')));
+  });
+  fm.addEventListener('click',e=>{if(!e.target.closest('.fmodal-box')||e.target.closest('.fm-close'))close();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+
 /* image lightbox */
 (function(){
   const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img');
