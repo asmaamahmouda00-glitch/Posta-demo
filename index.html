@@ -318,8 +318,8 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
 .lightbox .lb-close:hover{background:rgba(255,255,255,.2)}
 /* ===== FEATURE MODAL ===== */
 .card[data-modal]{cursor:pointer}
-.card[data-modal]::before{content:"";position:absolute;top:18px;right:18px;width:26px;height:26px;border-radius:8px;background:rgba(168,207,56,.12);opacity:0;transition:opacity .3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8CF38' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7'/%3E%3Cpath d='M7 7h10v10'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:15px}
-.card[data-modal]:hover::before{opacity:1}
+.card[data-modal]::before{content:"";position:absolute;top:13px;right:14px;left:auto;width:26px;height:26px;border-radius:8px;background:rgba(168,207,56,.12);opacity:.85;transition:opacity .3s,transform .3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8CF38' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7'/%3E%3Cpath d='M7 7h10v10'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:15px}
+.card[data-modal]:hover::before{opacity:1;transform:translate(2px,-2px)}
 .fmodal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(6,10,4,.82);backdrop-filter:blur(10px);padding:28px;overflow-y:auto}
 .fmodal.open{display:flex;animation:lbfade .25s ease}
 .fmodal-box{position:relative;width:100%;max-width:1020px;background:linear-gradient(180deg,var(--ink2),var(--ink));border:1px solid var(--line2);border-radius:24px;box-shadow:0 40px 100px rgba(0,0,0,.6);padding:60px 64px;animation:fmpop .32s cubic-bezier(.2,.8,.25,1)}
