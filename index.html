@@ -114,6 +114,12 @@ h1,h2,h3{font-family:var(--display);color:var(--white);font-weight:600;line-heig
 .g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .section .h-sec{text-align:center}
+  .section .lede{text-align:center;margin-left:auto;margin-right:auto}
+  .section .eyebrow{display:inline-flex;margin-left:auto;margin-right:auto}
+  .section .reveal{text-align:center;display:flex;flex-direction:column;align-items:center}
+}
 
 /* reveal */
 .reveal,.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -136,6 +142,14 @@ h1,h2,h3{font-family:var(--display);color:var(--white);font-weight:600;line-heig
 .hero-stats .s>span{font-family:var(--mono);font-size:11px;letter-spacing:.6px;color:var(--fog2);text-transform:uppercase}
 .hero-stats .div{width:1px;align-self:stretch;background:var(--line);margin-bottom:4px}
 @media(max-width:560px){.hero-stats .div{display:none}.hero-stats{gap:22px}}
+@media(max-width:640px){
+  .hero .wrap{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .hero h1{text-align:center;width:100%}
+  .hero .lede{text-align:center;max-width:100%;width:100%}
+  .hero .eyebrow{margin-left:auto;margin-right:auto}
+  .hero-cta{width:100%;justify-content:center}
+  .hero-stats{width:100%;justify-content:center}
+}
 .scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;
   font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog3);display:flex;flex-direction:column;align-items:center;gap:8px}
 .scrollcue .m{width:22px;height:36px;border:1.5px solid var(--line2);border-radius:12px;position:relative}
@@ -819,7 +833,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
     search:{
       eyebrow:'Productivity',
       title:'Advanced Search',
-      image:'./assets/advanced search.png',
+      image:'./assets/advanced search.avif',
       points:[
         'Find any message in seconds with full-text search',
         'Search even reads the contents of attachments',
