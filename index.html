@@ -163,18 +163,12 @@ h1,h2,h3{font-family:var(--display);color:var(--white);font-weight:600;line-heig
 .card.hl p{color:var(--fog)}
 
 /* zones */
-.zones-grid{display:grid;grid-template-columns:.85fr 1.4fr;gap:50px;align-items:center;margin-top:30px}
+.zones-grid{display:grid;grid-template-columns:.9fr 2fr;gap:40px;align-items:center;margin-top:30px}
 @media(max-width:860px){.zones-grid{grid-template-columns:1fr}}
 .bignum{font-family:var(--display);font-size:clamp(64px,10vw,118px);font-weight:700;line-height:1;
   background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .bignum-l{font-family:var(--mono);font-size:28px;letter-spacing:1px;color:var(--cyan);text-transform:uppercase;margin:6px 0 26px}
-.mapwrap{position:relative}
-.mapwrap img{opacity:.92;filter:drop-shadow(0 0 30px rgba(0,0,0,.4))}
-.pin{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);
-  box-shadow:0 0 12px var(--cyan);transform:translate(-50%,-50%);animation:pinpulse 2.4s infinite}
-.pin::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px solid var(--cyan);opacity:.6;animation:pinring 2.4s infinite}
-@keyframes pinpulse{0%,100%{opacity:.7}50%{opacity:1}}
-@keyframes pinring{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+.mapwrap img{width:100%;display:block;filter:drop-shadow(0 0 30px rgba(0,0,0,.4))}
 
 /* numbers / ring */
 .stats-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:center;margin-top:54px}
@@ -472,7 +466,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
       <a href="https://worldposta.com/" target="_blank" rel="noopener" class="btn btn-ghost">worldposta.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
     </div>
     <div class="hero-stats">
-      <div class="s"><b><span class="count" data-to="35">0</span></b><span>global zones</span></div>
+      <div class="s"><b>+<span class="count" data-to="35">0</span></b><span>global zones</span></div>
       <div class="div"></div>
       <div class="s"><b><span class="count" data-to="99.9" data-dec="1">0</span><u>%</u></b><span>uptime SLA</span></div>
       <div class="div"></div>
@@ -511,7 +505,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
         <p class="lede" style="font-size:16px">Traffic routes to the nearest zone for low latency, with automatic failover for uninterrupted service worldwide. Available in every country in the world.</p>
       </div>
       <div class="mapwrap reveal" id="mapwrap">
-        <img src="./assets/global-zones-map.png" alt="WorldPosta global availability zones">
+        <img src="./assets/map larg text.png" alt="WorldPosta global availability zones">
       </div>
     </div>
   </div>
@@ -977,12 +971,6 @@ if(caps){
   bio.observe(caps);
 }
 
-/* map pins */
-const pins=[[13,40],[12,52],[18,55],[22,42],[25,44],[45.5,32],[47.5,35],[47,41],[86,38],[82,47],[76,60],[92,75]];
-const mw0=document.getElementById('mapwrap');
-if(mw0){ pins.forEach((p,i)=>{const d=document.createElement('div');d.className='pin';
-  d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.animationDelay=(i*0.22)+'s';
-  mw0.appendChild(d); }); }
 
 /* hero paper planes */
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
