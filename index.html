@@ -20,9 +20,9 @@
   --maxw:1180px; --r:20px; --rt:15px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--body);background:var(--ink);color:var(--fog);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw;line-height:1.6}
 ::selection{background:var(--cyan);color:var(--ink)}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -48,7 +48,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:150;padding:20px 30px;
 nav.scrolled{padding:12px 30px;background:rgba(6,11,22,.72);backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line)}
 nav .logo{height:30px}
-nav .links{display:flex;gap:30px;align-items:center}
+nav .links{display:flex;gap:30px;align-items:center;
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
 nav .links a{font-family:var(--mono);font-size:12.5px;letter-spacing:.4px;color:var(--fog2);
   transition:color .25s;position:relative}
 nav .links a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;
@@ -432,6 +433,38 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--fog3);letter-spacing
   *{animation-duration:.001ms!important;transition-duration:.2s!important}
   .reveal,.stagger>*,.jr{opacity:1;transform:none}
   #cursor-glow,.arcsvg{display:none}
+}
+
+/* ===== MOBILE REFINEMENTS ===== */
+@media(max-width:760px){
+  .section{padding:84px 0}
+  nav{padding:16px 18px}
+  nav.scrolled{padding:11px 18px}
+  nav .logo{height:26px}
+  nav .cta{font-size:11.5px;padding:9px 16px}
+  nav a img[alt="Roaya"]{height:19px!important}
+  .hero .wrap img[alt="Posta"]{height:108px!important}
+  #cloudspace img[alt="CloudSpace"]{height:120px!important}
+}
+@media(max-width:560px){
+  .section{padding:66px 0}
+  nav{padding:13px 14px}
+  nav.scrolled{padding:10px 14px}
+  nav .logo{height:23px}
+  nav .cta{font-size:10.5px;padding:8px 13px}
+  nav a img[alt="Roaya"]{height:16px!important}
+  .hero{min-height:auto;padding:104px 0 56px}
+  .hero .wrap img[alt="Posta"]{height:88px!important}
+  #cloudspace img[alt="CloudSpace"]{height:96px!important}
+  .band{padding:28px 22px}
+  .hero-cta{gap:12px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .scrollcue{display:none}
+}
+@media(max-width:400px){
+  .wrap{padding:0 18px}
+  h1,.hero h1{word-break:break-word}
+  .statbox .n{font-size:44px}
 }
 </style>
 </head>
